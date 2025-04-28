@@ -1,0 +1,58 @@
+1. main.py
+Purpose: Entry point for running a demo task with a MagenticOne group chat system.
+
+Key Functions:
+
+Initializes a GPT-4o model client.
+
+Creates a CustomFileSurfer agent.
+
+Forms a team with MagenticOneGroupChat that includes the agent.
+
+Runs a task ("What is the UV index in Melbourne today?") in a console UI.
+
+2. custom_agent.py
+Purpose: Defines a custom agent (CustomFileSurfer) that can preview and navigate local files.
+
+Key Features:
+
+Uses a file browser (MarkdownFileBrowser) to interact with files.
+
+Processes user queries and responds using LLM tools for file navigation:
+
+Open files.
+
+Scroll through files.
+
+Search within files.
+
+Handles messages by maintaining chat history and interacting with files.
+
+3. custom_orchaster.py
+Purpose: Implements MagenticOneOrchestrator, a group chat orchestrator.
+
+Key Functions:
+
+Manages multi-agent coordination using a ledger system (tracks tasks, facts, and plans).
+
+Ensures structured conversation flow and task completion.
+
+Handles stalls, re-plans if needed, and generates a final answer.
+
+Manages the life cycle of tasks and coordinates agent responses.
+
+4. custom_chatgroup.py
+Purpose: Defines MagenticOneGroupChat, which manages a group of agents via the orchestrator.
+
+Key Features:
+
+Wraps agents into a coordinated team managed by MagenticOneOrchestrator.
+
+Handles setup of group chat parameters: participants, model client, max turns, stalls.
+
+Supports component-based configuration and loading for reuse and scalability.
+
+How It All Fits Together:
+main.py uses CustomFileSurfer (from custom_agent.py) as an agent in a MagenticOneGroupChat (from custom_chatgroup.py).
+
+The conversation and task management are handled by MagenticOneOrchestrator (from custom_orchaster.py), which coordinates the interaction logic.
